@@ -13,9 +13,11 @@ ENV CGO_ENABLED=0
 RUN go build -o /home/app/bin/goproxy ./cmd/main.go
 
 
-FROM quay.io/orvice/go-runtime:latest
+FROM golang:1.23
 
 ENV PROJECT_NAME goproxy
 WORKDIR /app/bin
 
 COPY --from=builder /home/app/bin/${PROJECT_NAME} /app/bin/goproxy
+
+ENTRYPOINT [ "/app/bin/goproxy" ]
