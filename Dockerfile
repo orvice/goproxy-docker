@@ -9,7 +9,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN go build -o /home/app/bin/goproxy main.go
+RUN go build -o /home/app/bin/goproxy ./cmd/main.go
 
 
 FROM quay.io/orvice/go-runtime:latest
