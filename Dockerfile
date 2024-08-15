@@ -9,6 +9,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
+ENV CGO_ENABLED=0
 RUN go build -o /home/app/bin/goproxy ./cmd/main.go
 
 
@@ -17,4 +18,4 @@ FROM quay.io/orvice/go-runtime:latest
 ENV PROJECT_NAME goproxy
 WORKDIR /app/bin
 
-COPY --from=builder /home/app/bin/${PROJECT_NAME} .
+COPY --from=builder /home/app/bin/${PROJECT_NAME} /app/bin/goproxy
