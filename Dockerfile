@@ -15,5 +15,6 @@ RUN go build -o /home/app/bin/goproxy ./cmd/main.go
 FROM quay.io/orvice/go-runtime:latest
 
 ENV PROJECT_NAME goproxy
+WORKDIR /app/bin
 
 COPY --from=builder /home/app/bin/${PROJECT_NAME} .
